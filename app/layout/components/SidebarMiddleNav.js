@@ -19,7 +19,7 @@ export const SidebarMiddleNav = () => (
         <SidebarMenu.Item
             icon={<i className="fa fa-fw fa-cubes"></i>}
             title="Data Request"
-            to="/dashboards/data" exact />
+            to="/pages/coming-soon" exact />
         <SidebarMenu.Item
             icon={<i className="fa fa-fw fa-sign-out"></i>}
             title="Sign Out"

@@ -6,7 +6,7 @@ var ExtractCssChunks = require("extract-css-chunks-webpack-plugin");
 
 var config = require('./../config');
 
-var BASE_PATH = process.env.BASE_PATH || '/';
+var BASE_PATH = process.env.BASE_PATH || '/covid/dashboard/';
 
 module.exports = {
     name: 'client',
