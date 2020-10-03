@@ -65,7 +65,7 @@ class Sidebar extends Component<SidebarProps, SidebarState> {
       <img src={`https://www.covidvault.com.au/api/controller/render.php?id=${account.id}&type=account`} alt="account logo" />
     ) : null;
     const header =
-      loggedIn && account.id !== "" ? (
+      loggedIn && account.id ? (
         <>
           <>{logo}</>
           <h2>{account.name}</h2>
