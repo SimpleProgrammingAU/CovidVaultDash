@@ -3,8 +3,9 @@ import spinner from "../assets/images/spinner.svg";
 
 import React, { Component, ReactNode } from "react";
 import { connect } from "react-redux";
+import axios from "axios";
 
-import { fetchAccount, navigate, setDrawer } from "../actions";
+import { fetchAccount, navigate, setDrawer, updateSession } from "../actions";
 import { Pages } from "../enums";
 import { Account, Action } from "../interfaces";
 import { AttributionBox } from ".";
@@ -39,6 +40,19 @@ class Sidebar extends Component<SidebarProps, SidebarState> {
     this.props.setDrawer(false);
   };
 
+  private _logOut = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    const { navigate, updateSession } = this.props;
+    axios.delete(`https://www.covidvault.com.au/api/session/${localStorage.getItem("sessionID")}`, {
+      headers: {
+        Authorization: localStorage.getItem("accessToken"),
+      },
+    });
+    localStorage.clear();
+    updateSession(false);
+    navigate(Pages.login);
+    e.preventDefault();
+  };
+
   private _navigate = (e: React.MouseEvent<HTMLDivElement, MouseEvent>, page: Pages): void => {
     const { navigate } = this.props;
     navigate(page);
@@ -47,7 +61,9 @@ class Sidebar extends Component<SidebarProps, SidebarState> {
 
   render = (): ReactNode => {
     const { account, loggedIn, pageDisplay, showDrawer } = this.props;
-    const logo = (account.logo) ? <img src={`https://www.covidvault.com.au/api/controller/render.php?id=${account.id}&type=account`} alt="account logo" /> : null;
+    const logo = account.logo ? (
+      <img src={`https://www.covidvault.com.au/api/controller/render.php?id=${account.id}&type=account`} alt="account logo" />
+    ) : null;
     const header =
       loggedIn && account.id !== "" ? (
         <>
@@ -135,11 +151,7 @@ class Sidebar extends Component<SidebarProps, SidebarState> {
             </ListItem>
 
             {/* LOG OUT */}
-            <ListItem
-              button
-              selected={false}
-              onClick={(e: React.MouseEvent<HTMLDivElement, MouseEvent>) => this._navigate(e, Pages.analytics)}
-            >
+            <ListItem button selected={false} onClick={this._logOut}>
               <ListItemIcon>
                 <ExitToApp />
               </ListItemIcon>
@@ -163,12 +175,13 @@ const mapStateToProps = (state: SidebarStateTransfer) => {
   };
 };
 
-export default connect(mapStateToProps, { fetchAccount, navigate, setDrawer })(Sidebar);
+export default connect(mapStateToProps, { fetchAccount, navigate, setDrawer, updateSession })(Sidebar);
 
 interface SidebarProps {
   fetchAccount: () => (dispatch: (action: Action<Account> | Action<boolean>) => void) => Promise<void>;
   navigate: (page: Pages) => Action<Pages>;
   setDrawer: (open: boolean) => Action<boolean>;
+  updateSession: (loggedIn: boolean) => Action<boolean>;
   account: Account;
   loggedIn: boolean;
   pageDisplay: Pages;
