@@ -38,6 +38,11 @@ export const account = (
     }
     case "LOGIN":
       return action.payload as Account;
+    case "UPDATE_ACCOUNT_ID":
+      return {
+        ...account,
+        id: action.payload as string,
+      };
     case "UPDATE_BUSINESS_NAME":
       return {
         ...account,

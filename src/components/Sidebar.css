@@ -9,6 +9,10 @@
   max-height: calc(100vh - 64px - 1rem);
 }
 
+.Sidebar img {
+  max-width: 14rem;
+}
+
 .Sidebar h2 {
   color: #151515;
 }
