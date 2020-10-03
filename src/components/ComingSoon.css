@@ -1,0 +1,9 @@
+.cs_paper {
+  margin-top: 1rem;
+  padding: 3rem;
+  text-align: center;
+}
+
+.cs_paper p {
+  font-style: italic;
+}

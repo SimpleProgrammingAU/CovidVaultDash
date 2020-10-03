@@ -1,0 +1,22 @@
+.Sidebar {
+  z-index: -1 !important;
+}
+
+.Sidebar > div {
+  margin-top: 64px;
+  padding-top: 1rem;
+  padding-left: 1rem;
+  max-height: calc(100vh - 64px - 1rem);
+}
+
+.Sidebar h2 {
+  color: #151515;
+}
+
+.nav-panel {
+  flex-grow: 1;
+}
+
+.attrBox {
+  max-width: 14rem;
+}

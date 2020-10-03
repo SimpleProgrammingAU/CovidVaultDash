@@ -1,0 +1,70 @@
+@font-face {
+  font-family: "Montserrat Regular";
+  font-style: normal;
+  font-weight: normal;
+  src: local("Montserrat Regular"), url("../assets/fonts/Montserrat-Regular.woff") format("woff");
+}
+
+.Login {
+  display: flex !important;
+  flex-direction: column !important;
+  min-height: 100vh !important;
+}
+
+h1 {
+  font-family: 'Montserrat Regular', sans-serif;
+  font-size: 2rem;
+  color: #151515;
+  letter-spacing: -0.1rem;
+  text-align: center;
+}
+
+.error {
+  background-color: red !important;
+  color: #FFF !important;
+  font-weight: bold !important;
+  box-shadow: 0.2rem 0.2rem 0.5rem #999 !important;
+}
+
+.flexContainer {
+  align-items: center;
+  display: flex;
+  flex: 1 1 auto;
+  justify-content: center;
+}
+
+.formContainer {
+  border: 0.1rem solid #ddd;
+  border-radius: 1rem;
+  padding: 1rem 2rem;
+  box-shadow: 0.2rem 0.2rem 0.5rem #999;
+}
+
+.logoContainer {
+  width: 200px;
+  margin: 0 auto;
+}
+
+.logoContainer img {
+  width: 100%;
+}
+
+.buttonContainer {
+  margin: 1rem 0;
+  text-align: center;
+  width: 100%;
+}
+
+.buttonContainer button {
+  margin: 0 0.5rem;
+}
+
+.linkContainer {
+  display: flex;
+  text-align: left;
+  width: 100%;
+}
+
+.linkContainer a:last-of-type {
+  margin-left: auto !important;
+}

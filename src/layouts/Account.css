@@ -1,0 +1,12 @@
+.paper {
+  padding: 0 1rem 0.5rem 1rem;
+}
+
+.logoPreview {
+  max-height: 10rem;
+  max-width: 75%;
+}
+
+input[type="file"] {
+  display: none;
+}
