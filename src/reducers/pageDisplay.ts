@@ -5,6 +5,8 @@ export const pageDisplay = (page: Pages = Pages.login, action: Action<Pages>): P
   switch (action.type) {
     case "NAVIGATE":
       return action.payload;
+    case "RESET_ALL":
+      return Pages.login;
   }
   return page;
 };

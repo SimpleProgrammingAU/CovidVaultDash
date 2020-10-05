@@ -4,6 +4,8 @@ export const loggedIn = (loggedIn:boolean = false, action:Action<boolean> ):bool
   switch (action.type) {
     case "UPDATE_SESSION":
       return action.payload;
+    case "RESET_ALL":
+      return false;
   }
   return loggedIn;
 }

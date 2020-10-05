@@ -19,7 +19,8 @@ export const account = (
   action: Action<Account | string | string[] | number | boolean>
 ): Account => {
   switch (action.type) {
-    case "DELETE_ACCOUNT": {
+    case "DELETE_ACCOUNT":
+    case "RESET_ALL": {
       return {
         id: "",
         name: "",

@@ -7,6 +7,7 @@ export const checklist = (checklist: ChecklistItem[] = [], action: Action<Checkl
     case "REMOVE_LIST_ITEM":
       return checklist.filter(({ id }) => id !== (action.payload as string));
     case "CLEAR_CHECKLIST":
+    case "RESET_ALL":
       return [];
   }
   return checklist;

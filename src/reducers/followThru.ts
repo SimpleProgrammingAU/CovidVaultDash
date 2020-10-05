@@ -7,6 +7,7 @@ export const followThru = (links:FollowThru[] = [], action:Action<FollowThru | s
     case "REMOVE_LINK":
       return links.filter(link => link.id !== action.payload as string)
     case "CLEAR_LINKS":
+    case "RESET_ALL":
       return [];
   }
   return links;

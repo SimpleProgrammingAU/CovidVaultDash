@@ -8,6 +8,7 @@ export { deleteFollowThru } from "./deleteFollowThru";
 export { fetchAccount } from "./fetchAccount";
 export { fetchChecklist } from "./fetchChecklist";
 export { fetchFollowThru } from "./fetchFollowThru";
+export { logOut } from "./logOut";
 export { navigate } from "./navigate";
 export { patchAccount } from "./patchAccount";
 export { setDrawer } from "./setDrawer";

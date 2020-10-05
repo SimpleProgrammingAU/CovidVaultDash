@@ -5,7 +5,7 @@ import React, { Component, ReactNode } from "react";
 import { connect } from "react-redux";
 import axios from "axios";
 
-import { fetchAccount, navigate, setDrawer, updateSession } from "../actions";
+import { fetchAccount, logOut, navigate, setDrawer, updateSession } from "../actions";
 import { Pages } from "../enums";
 import { Account, Action } from "../interfaces";
 import { AttributionBox } from ".";
@@ -41,15 +41,14 @@ class Sidebar extends Component<SidebarProps, SidebarState> {
   };
 
   private _logOut = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    const { navigate, updateSession } = this.props;
+    const { logOut } = this.props;
     axios.delete(`https://www.covidvault.com.au/api/session/${localStorage.getItem("sessionID")}`, {
       headers: {
         Authorization: localStorage.getItem("accessToken"),
       },
     });
     localStorage.clear();
-    updateSession(false);
-    navigate(Pages.login);
+    logOut();
     e.preventDefault();
   };
 
@@ -175,10 +174,11 @@ const mapStateToProps = (state: SidebarStateTransfer) => {
   };
 };
 
-export default connect(mapStateToProps, { fetchAccount, navigate, setDrawer, updateSession })(Sidebar);
+export default connect(mapStateToProps, { fetchAccount, logOut, navigate, setDrawer, updateSession })(Sidebar);
 
 interface SidebarProps {
   fetchAccount: () => (dispatch: (action: Action<Account> | Action<boolean>) => void) => Promise<void>;
+  logOut: () => Action<undefined>;
   navigate: (page: Pages) => Action<Pages>;
   setDrawer: (open: boolean) => Action<boolean>;
   updateSession: (loggedIn: boolean) => Action<boolean>;
