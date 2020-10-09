@@ -73,6 +73,11 @@ class ConditionsOfEntry extends Component<ConditionsOfEntryProps, ConditionsOfEn
         if (response.data.success) {
           addCheckItem({ id: response.data.data.id, statement: newItem.value });
           this.setState({
+            newItem: {
+              ...newItem,
+              value: "",
+              error: false,
+            },
             message: {
               value: "Checklist item successfully added",
               show: true,
@@ -87,7 +92,7 @@ class ConditionsOfEntry extends Component<ConditionsOfEntryProps, ConditionsOfEn
   componentDidMount = () => {
     const { fetchChecklist } = this.props;
     fetchChecklist();
-  }
+  };
 
   render = () => {
     const { checklist, showDrawer } = this.props;
