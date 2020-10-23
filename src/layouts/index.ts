@@ -6,4 +6,5 @@ export { default as FollowThru } from "./FollowThru";
 export { default as ForgotPassword } from "./ForgotPassword";
 export { default as Login } from "./Login";
 export { default as ManualEntry } from "./ManualEntry";
+export { default as PasswordReset } from "./PasswordReset";
 export { default as Register } from "./Register";

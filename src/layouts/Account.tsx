@@ -2,7 +2,7 @@ import "./Account.css";
 
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import axios, { AxiosResponse } from "axios";
+import { AxiosResponse } from "axios";
 import { ThunkAction } from "redux-thunk";
 
 import Alert from "@material-ui/lab/Alert";
@@ -22,6 +22,7 @@ import TextField from "@material-ui/core/TextField";
 import { clearSnackbar, deleteAccount, patchAccount, updateAccount, updateLogo } from "../actions";
 import { Statics as _C } from "../classes";
 import { Header, Sidebar } from "../components";
+import { api } from "../consts";
 import { Account as IAccount, Action, AxiosError, InputState, Response, Snackbar as ISnackbar } from "../interfaces";
 
 class Account extends Component<AccountProps, AccountState> {
@@ -165,8 +166,8 @@ class Account extends Component<AccountProps, AccountState> {
     const formData = new FormData();
     if (logo.data.length > 0) {
       formData.append("logo", logo.file, logo.name);
-      axios
-        .post(`https://covidvault.com.au/api/account/${localStorage.getItem("accountID")}`, formData, {
+      api
+        .post(`/account/${localStorage.getItem("accountID")}`, formData, {
           headers: {
             "Content-Type": "multipart/form-data",
             Authorization: localStorage.getItem("accessToken"),
@@ -182,16 +183,15 @@ class Account extends Component<AccountProps, AccountState> {
   private _passwordSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     const { password, newPassword, message } = this.state;
     if (this._passwordValidate()) {
-      axios
+      api
         .patch(
-          `https://covidvault.com.au/api/account/${localStorage.getItem("accountID")}`,
+          `/account/${localStorage.getItem("accountID")}`,
           {
             password: password.value,
             newPassword: newPassword.value,
           },
           {
             headers: {
-              "Content-Type": "application/json",
               Authorization: localStorage.getItem("accessToken"),
             },
           }

@@ -3,7 +3,7 @@ import logo from "../assets/images/logo.svg";
 
 import React, { Component, ReactNode } from "react";
 import { connect } from "react-redux";
-import axios, { AxiosResponse } from "axios";
+import { AxiosResponse } from "axios";
 
 import Alert from "@material-ui/lab/Alert";
 import Container from "@material-ui/core/Container";
@@ -16,6 +16,7 @@ import Snackbar from "@material-ui/core/Snackbar";
 import { Action, AxiosError, InputState, Response, Session } from "../interfaces";
 import { checkSession, navigate, updateSession } from "../actions";
 import { AttributionBox } from "../components";
+import { api } from "../consts";
 import { Pages } from "../enums";
 
 class Login extends Component<LoginProps, LoginState> {
@@ -65,15 +66,12 @@ class Login extends Component<LoginProps, LoginState> {
     const { email, password } = this.state;
 
     if (this._emailValidate()) {
-      axios
+      api
         .post(
-          `https://covidvault.com.au/api/session`,
+          `/session`,
           {
             username: email.value,
             password: password.value,
-          },
-          {
-            headers: { "Content-type": "application/json" },
           }
         )
         .then((response: AxiosResponse<Response<Session>>) => {
@@ -172,7 +170,7 @@ class Login extends Component<LoginProps, LoginState> {
                   </Link>
                   <Link
                     href="#"
-                    onClick={(e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => this._navigate(e, Pages.register)}
+                    onClick={(e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => this._navigate(e, Pages.forgotPassword)}
                   >
                     Forgot password
                   </Link>

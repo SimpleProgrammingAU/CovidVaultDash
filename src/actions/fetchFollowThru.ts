@@ -1,13 +1,11 @@
-import axios, { AxiosResponse } from "axios";
+import { AxiosResponse } from "axios";
+import { api } from "../consts";
 import { Action, FollowThru, Response } from "../interfaces";
 
 export const fetchFollowThru = () => {
   return async (dispatch: (action: Action<FollowThru> | Action<undefined>) => void) => {
-    const response: AxiosResponse<Response<FollowThru[]>> = await axios.get(
-      `https://covidvault.com.au/api/followon/${localStorage.getItem("accountID")}`,
-      {
-        validateStatus: () => true,
-      }
+    const response: AxiosResponse<Response<FollowThru[]>> = await api.get(
+      `/followon/${localStorage.getItem("accountID")}`,
     );
     if (response.data.success) {
       const { data } = response.data;

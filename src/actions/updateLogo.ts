@@ -1,4 +1,4 @@
-// import axios, { AxiosResponse } from "axios";
+// import { AxiosResponse } from "axios";
 // import { AnyAction } from "redux";
 // import { ThunkAction } from "redux-thunk";
 import { Action } from "../interfaces";
@@ -18,8 +18,8 @@ export const updateLogo = (status: boolean):Action<boolean> => ({ type: "UPDATE_
 
 // const sendLogo = (dataURL: string): ThunkAction<Promise<void>, {}, {}, AnyAction> => {
 //   return async (dispatch: (action: Action<string> | Action<boolean>) => void) => {
-//     const response: AxiosResponse<Response<Account>> = await axios.patch(
-//       `https://covidvault.com.au/api/account/${localStorage.getItem("accountID")}`,
+//     const response: AxiosResponse<Response<Account>> = await api.patch(
+//       `/account/${localStorage.getItem("accountID")}`,
 //       {
 //         logo: dataURL,
 //       },

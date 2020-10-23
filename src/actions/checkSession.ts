@@ -1,7 +1,8 @@
-import axios, { AxiosResponse } from "axios";
+import { AxiosResponse } from "axios";
+import { api } from "../consts";
 import { Action, Response, Session } from "../interfaces";
 
-export const checkSession = ():Action<boolean> | ((dispatch: (action: Action<boolean>) => void) => Promise<void>) => {
+export const checkSession = (): Action<boolean> | ((dispatch: (action: Action<boolean>) => void) => Promise<void>) => {
   if (
     !localStorage.getItem("accountID") ||
     !localStorage.getItem("sessionID") ||
@@ -37,15 +38,14 @@ export const checkSession = ():Action<boolean> | ((dispatch: (action: Action<boo
   //Refresh token if session has expired
   if (Date.now() > parseInt(localStorage.getItem("accessExpiry") as string)) {
     return async (dispatch: (action: Action<boolean>) => void) => {
-      const response: AxiosResponse<Response<Session>> = await axios.patch(
-        `https://covidvault.com.au/api/session/${localStorage.getItem("sessionID")}`,
+      const response: AxiosResponse<Response<Session>> = await api.patch(
+        `/session/${localStorage.getItem("sessionID")}`,
         {
           refreshToken: localStorage.getItem("refreshToken"),
         },
         {
           headers: {
             Authorization: localStorage.getItem("accessToken"),
-            "Content-Type": "application/json",
           },
         }
       );

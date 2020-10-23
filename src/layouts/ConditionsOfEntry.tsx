@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import axios, { AxiosResponse } from "axios";
+import { AxiosResponse } from "axios";
 
 import Alert from "@material-ui/lab/Alert";
 import Button from "@material-ui/core/Button";
@@ -12,6 +12,7 @@ import TextField from "@material-ui/core/TextField";
 import { addCheckItem, fetchChecklist } from "../actions";
 import { Statics as _C } from "../classes";
 import { ConditionsOfEntryRow, Header, Sidebar } from "../components";
+import { api } from "../consts";
 import { Action, ChecklistItem, InputState, Response } from "../interfaces";
 
 class ConditionsOfEntry extends Component<ConditionsOfEntryProps, ConditionsOfEntryState> {
@@ -56,15 +57,14 @@ class ConditionsOfEntry extends Component<ConditionsOfEntryProps, ConditionsOfEn
   private _formSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     const { addCheckItem, account } = this.props;
     const { newItem } = this.state;
-    axios
+    api
       .post(
-        `https://covidvault.com.au/api/checklist/${account.id}`,
+        `/checklist/${account.id}`,
         {
           text: newItem.value,
         },
         {
           headers: {
-            "Content-Type": "application/json",
             Authorization: localStorage.getItem("accessToken"),
           },
         }
@@ -87,7 +87,7 @@ class ConditionsOfEntry extends Component<ConditionsOfEntryProps, ConditionsOfEn
   componentDidMount = () => {
     const { fetchChecklist } = this.props;
     fetchChecklist();
-  }
+  };
 
   render = () => {
     const { checklist, showDrawer } = this.props;
