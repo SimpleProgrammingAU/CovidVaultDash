@@ -3,7 +3,7 @@ import logo from "../assets/images/logo.svg";
 
 import React, { Component, ReactNode } from "react";
 import { connect } from "react-redux";
-import axios, { AxiosResponse } from "axios";
+import { AxiosResponse } from "axios";
 
 import Alert from "@material-ui/lab/Alert";
 import Container from "@material-ui/core/Container";
@@ -20,6 +20,7 @@ import Snackbar from "@material-ui/core/Snackbar";
 import { Action, AxiosError, InputState, Response, Session } from "../interfaces";
 import { navigate } from "../actions";
 import { AttributionBox } from "../components";
+import { api } from "../consts";
 import { Pages } from "../enums";
 
 class Register extends Component<RegisterProps, RegisterState> {
@@ -160,36 +161,28 @@ class Register extends Component<RegisterProps, RegisterState> {
       }
       if (errorOut) return;
 
-      axios
-        .post(
-          "https://covidvault.com.au/api/account",
-          {
-            email: email.value,
-            password: password.value,
-            businessName: businessName.value,
-            abn: abn.value,
-            authContact: authContactName.value,
-            phone: authContactPhone.value,
-            streetAddress: streetAddress.value,
-            suburb: suburb.value,
-            state: state.value,
-            postcode: postcode.value,
-          },
-          {
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        )
+      api
+        .post("/account", {
+          email: email.value,
+          password: password.value,
+          businessName: businessName.value,
+          abn: abn.value,
+          authContact: authContactName.value,
+          phone: authContactPhone.value,
+          streetAddress: streetAddress.value,
+          suburb: suburb.value,
+          state: state.value,
+          postcode: postcode.value,
+        })
         .then((res: AxiosResponse<Response<Session>>) => {
           const { navigate } = this.props;
           if (res.data.success) {
             this.setState({
               message: {
-                value: "New account created successfully, redirecting back to login screen...",
+                value: "New account created successfull. Please check your email for account confirmation.",
                 show: true,
-                severity: "success"
-              }
+                severity: "success",
+              },
             });
             window.setTimeout(() => navigate(Pages.login), 3000);
           }
@@ -431,7 +424,7 @@ class Register extends Component<RegisterProps, RegisterState> {
                 </Link>
                 <Link
                   href="#"
-                  onClick={(e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => this._navigate(e, Pages.register)}
+                  onClick={(e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => this._navigate(e, Pages.forgotPassword)}
                 >
                   Forgot password
                 </Link>

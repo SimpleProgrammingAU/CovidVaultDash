@@ -1,9 +1,10 @@
-import axios, { AxiosResponse } from "axios";
+import { AxiosResponse } from "axios";
+import { api } from "../consts";
 import { Action, Response, Snackbar } from "../interfaces";
 
 export const deleteCondition = (id: string) => {
   return async (dispatch: (action: Action<Snackbar> | Action<boolean> | Action<string>) => void) => {
-    const response: AxiosResponse<Response<{}>> = await axios.delete(`https://covidvault.com.au/api/checklist/${id}`, {
+    const response: AxiosResponse<Response<{}>> = await api.delete(`/checklist/${id}`, {
       headers: {
         Authorization: localStorage.getItem("accessToken"),
       },

@@ -1,5 +1,6 @@
 export type { default as Account } from "./Account";
 export type { default as Action } from "./Action";
+export type { default as Activator } from "./Activator";
 export type { default as AxiosError } from "./AxiosError";
 export type { default as ChecklistItem } from "./ChecklistItem";
 export type { default as FollowThru } from "./FollowThru";

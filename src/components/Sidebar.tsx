@@ -3,9 +3,9 @@ import spinner from "../assets/images/spinner.svg";
 
 import React, { Component, ReactNode } from "react";
 import { connect } from "react-redux";
-import axios from "axios";
 
 import { fetchAccount, logOut, navigate, setDrawer, updateSession } from "../actions";
+import { api } from "../consts";
 import { Pages } from "../enums";
 import { Account, Action } from "../interfaces";
 import { AttributionBox } from ".";
@@ -42,7 +42,7 @@ class Sidebar extends Component<SidebarProps, SidebarState> {
 
   private _logOut = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     const { logOut } = this.props;
-    axios.delete(`https://www.covidvault.com.au/api/session/${localStorage.getItem("sessionID")}`, {
+    api.delete(`/session/${localStorage.getItem("sessionID")}`, {
       headers: {
         Authorization: localStorage.getItem("accessToken"),
       },

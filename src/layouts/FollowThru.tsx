@@ -2,7 +2,7 @@ import "./FollowThru.css";
 
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import axios, { AxiosResponse } from "axios";
+import { AxiosResponse } from "axios";
 
 import Alert from "@material-ui/lab/Alert";
 import Box from "@material-ui/core/Box";
@@ -15,6 +15,7 @@ import TextField from "@material-ui/core/TextField";
 import { addFollowThru, clearSnackbar, fetchFollowThru } from "../actions";
 import { FollowThruRow, Header, Sidebar } from "../components";
 import { Statics as _C } from "../classes";
+import { api } from "../consts";
 import { Action, AxiosError, FollowThru as IFollowThru, InputState, Response } from "../interfaces";
 
 class FollowThru extends Component<FollowThruProps, FollowThruState> {
@@ -66,8 +67,8 @@ class FollowThru extends Component<FollowThruProps, FollowThruState> {
       if (newImg.data.length > 0) formData.append("imgFile", newImg.file, newImg.name);
       if (newStart.value !== "") formData.append("start", newStart.value);
       if (newExpiry.value !== "") formData.append("expiry", newExpiry.value);
-      axios
-        .post(`https://covidvault.com.au/api/followon/${localStorage.getItem("accountID")}`, formData, {
+      api
+        .post(`/followon/${localStorage.getItem("accountID")}`, formData, {
           headers: {
             "Content-Type": "multipart/form-data",
             Authorization: localStorage.getItem("accessToken"),

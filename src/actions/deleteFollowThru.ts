@@ -1,9 +1,10 @@
-import axios, { AxiosResponse } from "axios";
+import { AxiosResponse } from "axios";
+import { api } from "../consts";
 import { Action, Response, Snackbar } from "../interfaces";
 
 export const deleteFollowThru = (id: string) => {
   return async (dispatch: (action: Action<Snackbar> | Action<boolean> | Action<string>) => void) => {
-    const response: AxiosResponse<Response<{}>> = await axios.delete(`https://covidvault.com.au/api/followon/${id}`, {
+    const response: AxiosResponse<Response<{}>> = await api.delete(`/followon/${id}`, {
       headers: {
         Authorization: localStorage.getItem("accessToken"),
       },
