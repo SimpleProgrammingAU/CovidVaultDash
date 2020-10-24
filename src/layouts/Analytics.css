@@ -1,0 +1,17 @@
+.Analytics .MuiPaper-root h2 {
+  padding-left: 0.5rem;
+}
+
+.Analytics p.large {
+  font-size: 400%;
+  text-align: center;
+  margin: 0;
+}
+
+.MuiPaper-root div.footer {
+  margin-top: 1rem;
+  border-top: solid thin gainsboro;
+  font-size: 75%;
+  font-variant: small-caps;
+  padding: 0.2rem;
+}
