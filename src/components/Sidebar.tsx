@@ -12,6 +12,7 @@ import { AttributionBox } from ".";
 
 import Announcement from "@material-ui/icons/Announcement";
 import BarChart from "@material-ui/icons/BarChart";
+import Beenhere from "@material-ui/icons/Beenhere";
 import Create from "@material-ui/icons/Create";
 import DoneAll from "@material-ui/icons/DoneAll";
 import Drawer from "@material-ui/core/Drawer";
@@ -149,6 +150,13 @@ class Sidebar extends Component<SidebarProps, SidebarState> {
               <ListItemText>Data Request</ListItemText>
             </ListItem>
 
+            {/* CHECK-IN PAGE */}
+            <ListItem button selected={false} component="a" href={`https://www.covidvault.com.au/checkin/?id=${account.id}`}>
+              <ListItemIcon>
+                <Beenhere />
+              </ListItemIcon>
+              <ListItemText>Check-in Page</ListItemText>
+            </ListItem>
             {/* LOG OUT */}
             <ListItem button selected={false} onClick={this._logOut}>
               <ListItemIcon>
