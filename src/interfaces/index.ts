@@ -8,3 +8,4 @@ export type { default as InputState } from "./InputState";
 export type { default as Response } from "./Response";
 export type { default as Session } from "./Session";
 export type { default as Snackbar } from "./Snackbar";
+export type { default as Statistics } from "./Statistics";

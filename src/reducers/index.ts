@@ -7,6 +7,7 @@ import { loggedIn } from "./loggedIn";
 import { pageDisplay } from "./pageDisplay";
 import { showDrawer } from "./showDrawer";
 import { snackbarMessage } from "./snackbarMessage";
+import { statistics } from "./statistics";
 
 export default combineReducers({
   account,
@@ -16,4 +17,5 @@ export default combineReducers({
   pageDisplay,
   showDrawer,
   snackbarMessage,
+  statistics,
 });
