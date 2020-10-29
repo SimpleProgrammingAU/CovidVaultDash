@@ -17,7 +17,7 @@ import Button from "@material-ui/core/Button";
 import Select from "@material-ui/core/Select";
 import Snackbar from "@material-ui/core/Snackbar";
 
-import { Action, AxiosError, InputState, Response, Session } from "../interfaces";
+import { Action, AxiosError, InputState, Message, Response, Session } from "../interfaces";
 import { navigate } from "../actions";
 import { AttributionBox } from "../components";
 import { api } from "../consts";
@@ -138,7 +138,6 @@ class Register extends Component<RegisterProps, RegisterState> {
       this._abnCheck() &&
       this._emailValidate() &&
       this._passwordValidate() &&
-      this._phoneValidate() &&
       this._postcodeCheck()
     ) {
       //Basic error checking
@@ -185,6 +184,14 @@ class Register extends Component<RegisterProps, RegisterState> {
               },
             });
             window.setTimeout(() => navigate(Pages.login), 3000);
+          } else {
+            this.setState({
+              message: {
+                value: res.data.messages[0],
+                show: true,
+                severity: "error",
+              },
+            });
           }
         })
         .catch((err: AxiosError<undefined>) => {
@@ -199,13 +206,13 @@ class Register extends Component<RegisterProps, RegisterState> {
   private _formUpdate = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>): void => {
     const { name, value } = e.target;
     //@ts-ignore
-    this.setState({
-      [name]: {
-        //@ts-ignore
-        ...this.state[name],
-        value,
-      },
-    });
+      this.setState({
+        [name]: {
+          //@ts-ignore
+          ...this.state[name],
+          value,
+        },
+      });
     e.preventDefault();
   };
 
@@ -226,16 +233,12 @@ class Register extends Component<RegisterProps, RegisterState> {
     }
   };
 
-  private _phoneValidate = (): boolean => {
+  private _phoneValidate = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>): void => {
     const { authContactPhone } = this.state;
-    let phoneCleaned = "+" + authContactPhone.value.replace(/\D/g, "");
-    if (phoneCleaned.length !== 12) {
-      this.setState({ authContactPhone: { ...authContactPhone, value: phoneCleaned, error: true } });
-      return false;
-    } else {
-      this.setState({ authContactPhone: { ...authContactPhone, value: phoneCleaned, error: false } });
-      return true;
-    }
+    if (e.target.value.length < 3) e.target.value = "+61";
+    e.target.value = e.target.value.replace(/[^0-9|+]/, "");
+    if (e.target.value.length > 12) e.target.value = e.target.value.substr(0, 12);
+    this.setState({ authContactPhone: { ...authContactPhone, value: e.target.value } });
   };
 
   private _postcodeCheck = (): boolean => {
@@ -360,7 +363,7 @@ class Register extends Component<RegisterProps, RegisterState> {
                 label={authContactPhone.label}
                 className="input"
                 value={authContactPhone.value}
-                onChange={this._formUpdate}
+                onChange={this._phoneValidate}
                 onBlur={this._phoneValidate}
                 error={authContactPhone.error}
                 required
@@ -464,10 +467,6 @@ interface RegisterState {
   suburb: InputState;
   state: InputState;
   postcode: InputState;
-  message: {
-    value: string;
-    show: boolean;
-    severity: "error" | "success";
-  };
+  message: Message;
 }
 interface RegisterStateTransfer {}
