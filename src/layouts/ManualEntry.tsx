@@ -18,7 +18,6 @@ import TextField from "@material-ui/core/TextField";
 import TickIcon from "@material-ui/icons/Check";
 
 import { checkSession } from "../actions";
-import { Statics as _C } from "../classes";
 import { Header, Sidebar } from "../components";
 import { api } from "../consts";
 import { Action, Message, Response } from "../interfaces";
@@ -122,7 +121,6 @@ class ManualEntry extends Component<ManualEntryProps, ManualEntryState> {
   render = () => {
     const { showDrawer } = this.props;
     const { date, message, visitors } = this.state;
-    const gridStyle = _C.GridWidth(showDrawer);
     const entryRows = visitors.map((row, i) => {
       const icon = row.complete ? <TickIcon /> : <DeleteIcon />;
       return (
@@ -158,8 +156,8 @@ class ManualEntry extends Component<ManualEntryProps, ManualEntryState> {
       <>
         <Header />
         <Sidebar />
-        <Grid className="ManualEntry" style={gridStyle} justify={"center"} spacing={4} container>
-          <Grid item md={4}>
+        <Grid className={(showDrawer ? "ManualEntry drawerOpen" : "ManualEntry drawerClosed")} justify={"center"} spacing={4} container>
+          <Grid item lg={4} md={12}>
             <Paper elevation={3} className="paper" square>
               <h2>Manual Data Entry</h2>
               <p>
@@ -176,7 +174,7 @@ class ManualEntry extends Component<ManualEntryProps, ManualEntryState> {
               <p>Make sure to correctly set the date before submitting!</p>
             </Paper>
           </Grid>
-          <Grid item md={8}>
+          <Grid item lg={8} md={12}>
             <Paper elevation={3} className="paper" square>
               <h2>&nbsp;</h2>
               <form onSubmit={this._formSubmit}>

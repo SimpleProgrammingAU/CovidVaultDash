@@ -20,7 +20,6 @@ import Switch from "@material-ui/core/Switch";
 import TextField from "@material-ui/core/TextField";
 
 import { clearSnackbar, deleteAccount, patchAccount, updateAccount, updateLogo } from "../actions";
-import { Statics as _C } from "../classes";
 import { Header, Sidebar } from "../components";
 import { api } from "../consts";
 import { Account as IAccount, Action, AxiosError, InputState, Response, Snackbar as ISnackbar } from "../interfaces";
@@ -313,13 +312,12 @@ class Account extends Component<AccountProps, AccountState> {
       deleteDisabled,
     } = this.state;
     const logoPreview = logo.file ? <img className="logoPreview" src={logo.data} alt="Your business' logo" /> : null;
-    const gridStyle = _C.GridWidth(showDrawer);
     return (
       <>
         <Header />
         <Sidebar />
-        <Grid style={gridStyle} spacing={4} container>
-          <Grid item md={4}>
+        <Grid className={(showDrawer ? "Account drawerOpen" : "Account drawerClosed")} spacing={4} container>
+          <Grid item lg={4} md={6}>
             <Paper className="paper" elevation={3}>
               <h2>Account Details</h2>
               <form onSubmit={this._accountSubmit}>
@@ -409,7 +407,7 @@ class Account extends Component<AccountProps, AccountState> {
               </form>
             </Paper>
           </Grid>
-          <Grid item md={4}>
+          <Grid item lg={4} md={6}>
             <Paper className="paper" elevation={3}>
               <h2>Update Logo</h2>
               {logoPreview}
@@ -440,7 +438,7 @@ class Account extends Component<AccountProps, AccountState> {
               </form>
             </Paper>
           </Grid>
-          <Grid item md={4}>
+          <Grid item lg={4} md={6}>
             <Paper className="paper" elevation={3}>
               <h2>Change Password</h2>
               <form onSubmit={this._passwordSubmit}>

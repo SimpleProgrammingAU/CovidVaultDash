@@ -7,5 +7,9 @@
 }
 
 .DataRequest button {
-  margin-top: 0.5rem;
+  margin: 0.5rem;
+}
+
+.DataRequest .MuiPaper-root {
+  padding: 0 0.5rem;
 }

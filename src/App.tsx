@@ -1,3 +1,5 @@
+import "./App.css";
+
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import queryString from "query-string";

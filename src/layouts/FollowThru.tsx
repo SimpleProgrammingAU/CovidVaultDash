@@ -14,7 +14,6 @@ import TextField from "@material-ui/core/TextField";
 
 import { addFollowThru, clearSnackbar, fetchFollowThru } from "../actions";
 import { FollowThruRow, Header, Sidebar } from "../components";
-import { Statics as _C } from "../classes";
 import { api } from "../consts";
 import { Action, AxiosError, FollowThru as IFollowThru, InputState, Response } from "../interfaces";
 
@@ -217,14 +216,13 @@ class FollowThru extends Component<FollowThruProps, FollowThruState> {
       ) : (
         <p>No promotional links have been added.</p>
       );
-    const gridStyle = _C.GridWidth(showDrawer);
     return (
       <>
         <Header />
         <Sidebar />
-        <Grid style={gridStyle} spacing={4} container>
+        <Grid className={(showDrawer ? "FollowThru drawerOpen" : "FollowThru drawerClosed")} spacing={4} container>
           <Grid item md={8}>
-            <Paper className="paper" elevation={3}>
+            <Paper className="paper" elevation={3} square>
               <h2>Add New Link</h2>
               <form onSubmit={this._addFollowThru}>
                 <Box className="row">
@@ -293,13 +291,13 @@ class FollowThru extends Component<FollowThruProps, FollowThruState> {
             </Paper>
           </Grid>
           <Grid item md={4}>
-            <Paper className="paper" elevation={3}>
+            <Paper className="paper" elevation={3} square>
               <h2>Preview</h2>
               <p>Coming in a future update.</p>
             </Paper>
           </Grid>
           <Grid item md={8}>
-            <Paper className="paper" elevation={3}>
+            <Paper className="paper" elevation={3} square>
               <h2>Promotional Links</h2>
               {linkList}
             </Paper>

@@ -1,3 +1,5 @@
+import "./ConditionsOfEntry.css";
+
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { AxiosResponse } from "axios";
@@ -10,7 +12,6 @@ import Snackbar from "@material-ui/core/Snackbar";
 import TextField from "@material-ui/core/TextField";
 
 import { addCheckItem, fetchChecklist } from "../actions";
-import { Statics as _C } from "../classes";
 import { ConditionsOfEntryRow, Header, Sidebar } from "../components";
 import { api } from "../consts";
 import { Action, ChecklistItem, InputState, Response } from "../interfaces";
@@ -98,14 +99,13 @@ class ConditionsOfEntry extends Component<ConditionsOfEntryProps, ConditionsOfEn
     const { checklist, showDrawer } = this.props;
     const { message, newItem } = this.state;
     const conditionList = checklist.map((item) => <ConditionsOfEntryRow id={item.id} text={item.statement} key={item.id} />);
-    const gridStyle = _C.GridWidth(showDrawer);
     return (
       <>
         <Header />
         <Sidebar />
-        <Grid style={gridStyle} spacing={4} container>
+        <Grid className={(showDrawer ? "ConditionsOfEntry drawerOpen" : "ConditionsOfEntry drawerClosed")} spacing={4} container>
           <Grid item md={12}>
-            <Paper className="paper" elevation={3}>
+            <Paper className="paper" elevation={3} square>
               <h2>Conditions of Entry</h2>
               {conditionList}
               <form onSubmit={this._formSubmit}>
@@ -114,7 +114,6 @@ class ConditionsOfEntry extends Component<ConditionsOfEntryProps, ConditionsOfEn
                   fullWidth
                   name="newItem"
                   label={newItem.label}
-                  className="input"
                   value={newItem.value}
                   error={newItem.error}
                   onChange={this._formChange}

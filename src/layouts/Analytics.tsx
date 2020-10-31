@@ -10,7 +10,6 @@ import Paper from "@material-ui/core/Paper";
 import { Bar, BarChart, CartesianGrid, Cell, Pie, PieChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 
 import { checkSession, fetchStatistics } from "../actions";
-import { Statics as _C } from "../classes";
 import { Action, Statistics } from "../interfaces";
 
 class Analytics extends Component<AnalyticsProps, AnalyticsState> {
@@ -21,7 +20,6 @@ class Analytics extends Component<AnalyticsProps, AnalyticsState> {
 
   render = () => {
     const { showDrawer, statistics } = this.props;
-    const gridStyle = _C.GridWidth(showDrawer);
     const todayString = new Date().toDateString();
     const hourData = statistics.byHour.map((rowData, i) => {
       const hours = ["12am", "1am", "2am", "3am", "4am", "5am", "6am", "7am", "8am", "9am", "10am", "11am", "12pm", "1pm", "2pm", "3pm", "4pm", "5pm", "6pm", "7pm", "8pm", "9pm", "10pm", "11pm"];
@@ -59,8 +57,8 @@ class Analytics extends Component<AnalyticsProps, AnalyticsState> {
       <>
         <Header />
         <Sidebar />
-        <Grid className="Analytics" style={gridStyle} spacing={4} justify={"center"} container>
-          <Grid item md={6}>
+        <Grid className={(showDrawer ? "Analytics drawerOpen" : "Analytics drawerClosed")} spacing={4} justify={"flex-start"} container>
+          <Grid item lg={6} md={12}>
             <Paper elevation={3} square>
               <h2>Visitors by Hour</h2>
               <ResponsiveContainer width="100%" height={250}>
@@ -75,7 +73,7 @@ class Analytics extends Component<AnalyticsProps, AnalyticsState> {
               <div className="footer">Based on previous 28 days of visitor data.</div>
             </Paper>
           </Grid>
-          <Grid item md={6}>
+          <Grid item lg={6} md={12}>
             <Paper elevation={3} square>
               <Paper elevation={3} square>
                 <h2>Visitors by Day of Week</h2>
@@ -92,14 +90,14 @@ class Analytics extends Component<AnalyticsProps, AnalyticsState> {
               </Paper>
             </Paper>
           </Grid>
-          <Grid item md={3}>
+          <Grid item lg={4} md={6} sm={12}>
             <Paper elevation={3} square>
               <h2>Visitors Today</h2>
               <p className="large">{statistics.today}</p>
               <div className="footer">Data for {todayString}.</div>
             </Paper>
           </Grid>
-          <Grid item md={3}>
+          <Grid item lg={4} md={6} sm={12}>
             <Paper elevation={3} square>
               <h2>Returning Visitors</h2>
               <ResponsiveContainer width="100%" height={110}>
@@ -125,7 +123,7 @@ class Analytics extends Component<AnalyticsProps, AnalyticsState> {
               <div className="footer">Based on previous 28 days of visitor data.</div>
             </Paper>
           </Grid>
-          <Grid item md={6}>
+          <Grid item lg={4} md={6} sm={12}>
             <Paper elevation={3} square>
               <h2>API Requests</h2>
               <ResponsiveContainer width="100%" height={apiGraphHeight}>
