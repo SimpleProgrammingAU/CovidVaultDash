@@ -103,12 +103,18 @@ class DataRequest extends Component<DataRequestProps, DataRequestState> {
     e.preventDefault();
     const { date, authContact, password } = this.state;
     api
-      .post(`/extract/${localStorage.accountID}/${date.value}`, {
-        data: {
+      .post(
+        `/extract/${localStorage.accountID}/${date.value}`,
+        {
           authName: authContact.value,
           password: password.value,
         },
-      })
+        {
+          headers: {
+            Authorization: localStorage.getItem("accessToken"),
+          },
+        }
+      )
       .then((response: AxiosResponse<Response<undefined>>) => {
         if (response.data.success)
           this.setState({
@@ -133,12 +139,18 @@ class DataRequest extends Component<DataRequestProps, DataRequestState> {
     e.preventDefault();
     const { phone, authContact, password } = this.state;
     api
-      .post(`/extract/${localStorage.accountID}/${phone.value}`, {
-        data: {
+      .post(
+        `/extract/${localStorage.accountID}/${phone.value}`,
+        {
           authName: authContact.value,
           password: password.value,
         },
-      })
+        {
+          headers: {
+            Authorization: localStorage.getItem("accessToken"),
+          },
+        }
+      )
       .then((response: AxiosResponse<Response<{ atLocation: boolean; atOtherLocation: boolean }>>) => {
         const { data } = response.data;
         if (response.data.success)
