@@ -8,7 +8,7 @@
   margin: 0;
 }
 
-.MuiPaper-root div.footer {
+.Analytics .MuiPaper-root div.footer {
   margin-top: 1rem;
   border-top: solid thin gainsboro;
   font-size: 75%;

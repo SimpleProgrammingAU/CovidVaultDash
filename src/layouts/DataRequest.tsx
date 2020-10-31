@@ -10,7 +10,6 @@ import Paper from "@material-ui/core/Paper";
 import Snackbar from "@material-ui/core/Snackbar";
 import TextField from "@material-ui/core/TextField";
 
-import { Statics as _C } from "../classes";
 import { Header, Sidebar } from "../components";
 import { api } from "../consts";
 import { checkSession } from "../actions";
@@ -175,7 +174,6 @@ class DataRequest extends Component<DataRequestProps, DataRequestState> {
   render = () => {
     const { showDrawer } = this.props;
     const { phone, date, authContact, password, message, phoneResponse } = this.state;
-    const gridStyle = _C.GridWidth(showDrawer);
     const phoneContent = phoneResponse.ready ? (
       <>
         <p>Results for {phone.value}:</p>
@@ -216,9 +214,9 @@ class DataRequest extends Component<DataRequestProps, DataRequestState> {
       <>
         <Header />
         <Sidebar />
-        <Grid className="DataRequest" style={gridStyle} justify="center" spacing={4} container>
+        <Grid className={(showDrawer ? "DataRequest drawerOpen" : "DataRequest drawerClosed")} justify="center" spacing={4} container>
           <Grid item md={6}>
-            <Paper elevation={3} className="paper" square>
+            <Paper elevation={3} square>
               <h2>Data Request</h2>
               <p>
                 These forms permit the request for the contact data of visitors to your business. As per the CovidVault privacy
@@ -250,7 +248,7 @@ class DataRequest extends Component<DataRequestProps, DataRequestState> {
           </Grid>
           <Grid item md={6}>
             <Grid item md={12}>
-              <Paper elevation={3} className="paper" square>
+              <Paper elevation={3} square>
                 <h3>Request Data by Date</h3>
                 <form onSubmit={this._dateSubmit}>
                   <TextField
@@ -282,7 +280,7 @@ class DataRequest extends Component<DataRequestProps, DataRequestState> {
               </Paper>
             </Grid>
             <Grid item md={12}>
-              <Paper elevation={3} className="paper" square>
+              <Paper elevation={3} square>
                 <h3>Request Data by Phone Number</h3>
                 {phoneContent}
               </Paper>

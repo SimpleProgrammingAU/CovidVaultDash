@@ -1,21 +1,29 @@
-.row {
+.FollowThru .paper {
+  padding: 0 1rem 0.5rem 1rem;
+}
+
+.FollowThru .row {
   margin-top: 1rem;
 }
 
-.row > div {
+.FollowThru .row > div {
  width: calc(50% - 0.5rem);
 }
 
-.row > div:last-child {
+.FollowThru .row > div:last-child {
   margin-left: 1rem;
 }
 
-.row > button {
+.FollowThru .row > button {
   margin-top: 0.5rem;
   margin-left: 1rem;
 }
 
-.datePickerRow > div > label {
+.FollowThru .datePickerRow > div > label {
   color: #3f51b5;
   transform: translate(0, 1.5px) scale(0.75) !important;
+}
+
+.FollowThru input[type="file"] {
+  display: none;
 }
