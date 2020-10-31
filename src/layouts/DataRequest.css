@@ -1,0 +1,11 @@
+.DataRequest ol > li {
+  list-style-type: decimal;
+}
+
+.DataRequest ul > li {
+  list-style-type: disc;
+}
+
+.DataRequest button {
+  margin-top: 0.5rem;
+}
