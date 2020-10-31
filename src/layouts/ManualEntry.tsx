@@ -71,7 +71,7 @@ class ManualEntry extends Component<ManualEntryProps, ManualEntryState> {
             this.setState({
               message: {
                 ...message,
-                value: "Adding entry failed. Check form for unsubmitted rows.",
+                value: response.data.messages[0],
                 show: true,
                 severity: "error",
               },

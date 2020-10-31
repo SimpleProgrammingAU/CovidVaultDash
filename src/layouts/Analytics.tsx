@@ -55,7 +55,6 @@ class Analytics extends Component<AnalyticsProps, AnalyticsState> {
       }
     });
     const apiGraphHeight = apiData.length * 40 + 50;
-    console.log(statistics);
     return (
       <>
         <Header />
