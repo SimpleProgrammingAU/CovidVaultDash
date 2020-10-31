@@ -1,16 +1,16 @@
 .drawerOpen {
-  margin: 0 2rem;
-  width: calc(100% - 4rem);
+  margin: 0 2rem !important;
+  width: calc(100% - 4rem) !important;
 }
 
 .drawerClosed {
-  margin: 0 2rem;
-  width: calc(100% - 4rem);
+  margin: 0 2rem !important;
+  width: calc(100% - 4rem) !important;
 }
 
 @media only screen and (min-width: 768px) {
   .drawerOpen {
-    margin: 0 2rem 0 calc(17rem + 64px);
-    width: calc(100% - 19rem - 64px);
+    margin: 0 2rem 0 calc(17rem + 64px) !important;
+    width: calc(100% - 19rem - 64px) !important;
   }
 }
