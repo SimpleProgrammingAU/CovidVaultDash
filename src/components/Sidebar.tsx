@@ -14,6 +14,7 @@ import Announcement from "@material-ui/icons/Announcement";
 import BarChart from "@material-ui/icons/BarChart";
 import Beenhere from "@material-ui/icons/Beenhere";
 import Create from "@material-ui/icons/Create";
+import CropFree from '@material-ui/icons/CropFree';
 import DoneAll from "@material-ui/icons/DoneAll";
 import Drawer from "@material-ui/core/Drawer";
 import ExitToApp from "@material-ui/icons/ExitToApp";
@@ -150,6 +151,14 @@ class Sidebar extends Component<SidebarProps, SidebarState> {
               <ListItemText>Data Request</ListItemText>
             </ListItem>
 
+            {/* QR Code */}
+            <ListItem button selected={false} component="a" href={`https://chart.googleapis.com/chart?cht=qr&chs=500x500&chld=M&chl=https://www.covidvault.com.au/checkin/?id=${account.id}`}>
+              <ListItemIcon>
+                <CropFree />
+              </ListItemIcon>
+              <ListItemText>QR Code</ListItemText>
+            </ListItem>
+
             {/* CHECK-IN PAGE */}
             <ListItem button selected={false} component="a" href={`https://www.covidvault.com.au/checkin/?id=${account.id}`}>
               <ListItemIcon>
@@ -157,6 +166,7 @@ class Sidebar extends Component<SidebarProps, SidebarState> {
               </ListItemIcon>
               <ListItemText>Check-in Page</ListItemText>
             </ListItem>
+
             {/* LOG OUT */}
             <ListItem button selected={false} onClick={this._logOut}>
               <ListItemIcon>
